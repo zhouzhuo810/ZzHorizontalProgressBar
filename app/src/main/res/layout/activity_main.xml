@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
+        android:id="@+id/pb"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:padding="2dp"
+        />
+
+    <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
+        android:id="@+id/pb1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        app:zpb_padding="4dp"
+        />
+
+    <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
+        android:id="@+id/pb2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:zpb_bg_color="@android:color/holo_orange_dark"
+        />
+
+    <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
+        android:id="@+id/pb3"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:zpb_pb_color="@android:color/holo_green_dark"
+        />
+
+    <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
+        android:id="@+id/pb4"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:zpb_padding="0dp"
+        app:zpb_pb_color="@android:color/holo_green_dark"
+        />
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="拖动试试?"/>
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:max="100"
+        android:progress="0"
+        />
+</LinearLayout>

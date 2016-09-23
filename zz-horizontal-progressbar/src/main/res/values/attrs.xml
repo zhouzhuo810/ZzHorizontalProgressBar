@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ZzHorizontalProgressBar">
+        <attr name="zpb_padding" format="dimension" />
+        <attr name="zpb_bg_color" format="color|reference" />
+        <attr name="zpb_pb_color" format="color|reference" />
+        <attr name="zpb_max" format="integer" />
+        <attr name="zpb_progress" format="integer" />
+    </declare-styleable>
+</resources>
