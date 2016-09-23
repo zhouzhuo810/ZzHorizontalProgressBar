@@ -32,7 +32,7 @@ Maven:
 
 <h3>What does it look like？</h3>
 
-![这里写图片描述](http://img.blog.csdn.net/20160923173558894)
+![这里写图片描述](https://github.com/zhouzhuo810/ZzHorizontalProgressBar/blob/master/zzhorizontalprogressbar.gif)
 
 
 
