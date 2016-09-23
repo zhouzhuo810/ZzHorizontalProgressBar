@@ -72,7 +72,7 @@ Maven:
         pb.setBgColor(Color.RED);
 
 		//set progress color
-        pb.setProgress(Color.BLUE);
+        pb.setProgressColor(Color.BLUE);
 
 		//set max value
         pb.setMax(100);		
