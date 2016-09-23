@@ -2,6 +2,7 @@
 
 A Horizontal ProgressBar that is customized easily.
 
+Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 
 **功能简介**：
 1.支持自定义进度颜色；
