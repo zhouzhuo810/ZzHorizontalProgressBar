@@ -147,6 +147,7 @@ public class ZzHorizontalProgressBar extends View {
 
     public void setBgColor(int bgColor) {
         this.bgColor = bgColor;
+        bgPaint.setColor(bgColor);
         invalidate();
     }
 
@@ -156,6 +157,7 @@ public class ZzHorizontalProgressBar extends View {
 
     public void setProgressColor(int progressColor) {
         this.progressColor = progressColor;
+        progressPaint.setColor(progressColor);
         invalidate();
     }
 

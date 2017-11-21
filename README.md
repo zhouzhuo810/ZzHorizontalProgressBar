@@ -15,7 +15,7 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 Gradle:
 
 ```
-compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.0'
+compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.1'
 ```
 
 
@@ -89,3 +89,27 @@ Maven:
 |zpb_max|进度最大值|int|
 |zpb_progress|默认进度值|int|
 
+
+### Fix Records
+
+#### v1.1
+
+- 修复动态修改背景颜色和进度颜色无效问题；
+
+### License
+
+```
+Copyright © zhouzhuo810
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
