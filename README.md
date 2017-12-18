@@ -8,14 +8,15 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 1.支持自定义进度颜色；
 2.支持自定义背景颜色；
 3.支持自定义背景与进度之间的内间距大小；
-4.支持自定义最大值和默认进度值。
+4.支持自定义最大值和默认进度值；
+5.支持渐变颜色进度。
 
 **与系统控件相比的优势**：属性配置更简单、大小适配更方便。
 
 Gradle:
 
 ```
-compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.1'
+compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.2'
 ```
 
 
@@ -88,9 +89,16 @@ Maven:
 |zpb_pb_color |进度颜色|color|
 |zpb_max|进度最大值|int|
 |zpb_progress|默认进度值|int|
+|zpb_open_gradient_|是否使用渐变色|boolean|
+|zpb_gradient_from|开始渐变颜色|color|
+|zpb_gradient_to|结束渐变颜色|color|
 
 
 ### Fix Records
+
+#### v1.2
+
+- 添加渐变色属性；
 
 #### v1.1
 

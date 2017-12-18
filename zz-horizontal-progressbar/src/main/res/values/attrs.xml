@@ -6,5 +6,8 @@
         <attr name="zpb_pb_color" format="color|reference" />
         <attr name="zpb_max" format="integer" />
         <attr name="zpb_progress" format="integer" />
+        <attr name="zpb_open_gradient" format="boolean" />
+        <attr name="zpb_gradient_from" format="color|reference" />
+        <attr name="zpb_gradient_to" format="color|reference" />
     </declare-styleable>
 </resources>

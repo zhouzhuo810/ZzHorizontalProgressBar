@@ -4,58 +4,57 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
         android:id="@+id/pb"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="60px"
-        android:padding="2dp"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:padding="2dp" />
 
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
         android:id="@+id/pb1"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        app:zpb_padding="4dp"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        app:zpb_padding="4dp" />
 
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
         android:id="@+id/pb2"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        app:zpb_bg_color="@android:color/holo_orange_dark"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        app:zpb_bg_color="@android:color/holo_orange_dark" />
 
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
         android:id="@+id/pb3"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:zpb_pb_color="@android:color/holo_green_dark"
-        />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        app:zpb_pb_color="@android:color/holo_green_dark" />
 
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
         android:id="@+id/pb4"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:zpb_padding="0dp"
-        app:zpb_pb_color="@android:color/holo_green_dark"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        app:zpb_bg_color="#dbdbdb"
+        app:zpb_gradient_from="#419120"
+        app:zpb_gradient_to="#b3eb50"
+        app:zpb_max="100"
+        app:zpb_open_gradient="true"
+        app:zpb_padding="1dp"
         />
 
     <TextView
@@ -63,24 +62,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"
         android:gravity="center"
         android:textColor="@android:color/black"
-        />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="拖动试试?"/>
+        android:text="拖动试试?" />
+
     <SeekBar
         android:id="@+id/seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:max="100"
-        android:progress="0"
-        />
+        android:progress="0" />
 </LinearLayout>

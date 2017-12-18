@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.1"
+version = "1.0.2"
 
 android {
     resourcePrefix "zz_" //随意填写
@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -80,8 +80,8 @@ install {
             }
             developers {
                 developer {
-                    name 'zhouzhuo'
-                    email 'admin@zhouzhuo.me'
+                    name 'zhouzhuo810'
+                    email 'admin@zhouzhuo810.me'
                 }
             }
         }
@@ -109,9 +109,9 @@ bintray {
         issueTrackerUrl = 'https://github.com/zhouzhuo810/ZzHorizontalProgressBar/issues'
         publicDownloadNumbers = true
         version {
-            name = '1.0.1'
+            name = '1.0.2'
             desc = 'zz-horizontal-progressbar release'
-            vcsTag = '1.0.1'
+            vcsTag = '1.0.2'
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }

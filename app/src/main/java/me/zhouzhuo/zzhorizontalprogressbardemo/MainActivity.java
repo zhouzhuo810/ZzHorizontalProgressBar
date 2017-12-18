@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
                 pb3.setProgress(progress);
                 pb4.setProgress(progress);
                 if (progress > 80) {
-                    pb4.setProgressColor(0xff00ff00);
+                    pb3.setProgressColor(0xff00ff00);
                 } else {
-                    pb4.setProgressColor(0xffff0000);
+                    pb3.setProgressColor(0xffff0000);
                 }
                 tvProgress.setText("prgress = " + pb1.getProgress() + ", max = " + pb1.getMax());
             }
