@@ -4,10 +4,20 @@
         <attr name="zpb_padding" format="dimension" />
         <attr name="zpb_bg_color" format="color|reference" />
         <attr name="zpb_pb_color" format="color|reference" />
+        <attr name="zpb_second_pb_color" format="color|reference" />
         <attr name="zpb_max" format="integer" />
         <attr name="zpb_progress" format="integer" />
+        <attr name="zpb_show_second_progress" format="boolean" />
+        <attr name="zpb_second_progress" format="integer" />
+        <attr name="zpb_show_second_point_shape" format="enum">
+            <enum name="point" value="0"/>
+            <enum name="line" value="1"/>
+        </attr>
         <attr name="zpb_open_gradient" format="boolean" />
         <attr name="zpb_gradient_from" format="color|reference" />
         <attr name="zpb_gradient_to" format="color|reference" />
+        <attr name="zpb_open_second_gradient" format="boolean" />
+        <attr name="zpb_second_gradient_from" format="color|reference" />
+        <attr name="zpb_second_gradient_to" format="color|reference" />
     </declare-styleable>
 </resources>

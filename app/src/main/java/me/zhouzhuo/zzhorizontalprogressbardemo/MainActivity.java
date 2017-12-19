@@ -28,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 pb.setProgress(progress);
                 pb1.setProgress(progress);
+                pb1.setSecondProgress(progress);
                 pb2.setProgress(progress);
+                pb2.setSecondProgress(progress-30);
                 pb3.setProgress(progress);
                 pb4.setProgress(progress);
                 if (progress > 80) {

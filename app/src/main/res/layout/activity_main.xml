@@ -18,11 +18,21 @@
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
         android:id="@+id/pb1"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        app:zpb_padding="4dp" />
+        app:zpb_bg_color="#d8d8d8"
+        app:zpb_gradient_from="#429321"
+        app:zpb_gradient_to="#b4ec51"
+        app:zpb_max="100"
+        app:zpb_open_gradient="true"
+        app:zpb_padding="1px"
+        app:zpb_progress="50"
+        app:zpb_second_pb_color="#f5a623"
+        app:zpb_second_progress="100"
+        app:zpb_show_second_point_shape="point"
+        app:zpb_show_second_progress="true" />
 
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
         android:id="@+id/pb2"
@@ -31,7 +41,19 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        app:zpb_bg_color="@android:color/holo_orange_dark" />
+        app:zpb_bg_color="#d8d8d8"
+        app:zpb_gradient_from="#429321"
+        app:zpb_gradient_to="#b4ec51"
+        app:zpb_max="100"
+        app:zpb_open_gradient="true"
+        app:zpb_open_second_gradient="true"
+        app:zpb_padding="1px"
+        app:zpb_progress="50"
+        app:zpb_second_gradient_from="#f76b1c"
+        app:zpb_second_gradient_to="#fad961"
+        app:zpb_second_pb_color="#f5a623"
+        app:zpb_show_second_point_shape="line"
+        app:zpb_show_second_progress="true" />
 
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
         android:id="@+id/pb3"
@@ -54,8 +76,7 @@
         app:zpb_gradient_to="#b3eb50"
         app:zpb_max="100"
         app:zpb_open_gradient="true"
-        app:zpb_padding="1dp"
-        />
+        app:zpb_padding="1dp" />
 
     <TextView
         android:id="@+id/tv_progress"
