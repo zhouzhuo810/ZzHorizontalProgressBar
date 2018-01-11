@@ -27,7 +27,7 @@ Maven:
 <dependency>
   <groupId>me.zhouzhuo.zzhorizontalprogressbar</groupId>
   <artifactId>zz-horizontal-progressbar</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.3</version>
   <type>pom</type>
 </dependency>
 ```
