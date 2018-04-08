@@ -100,8 +100,13 @@ Maven:
 |zpb_second_gradient_from|二级进度开始渐变颜色|color|
 |zpb_second_gradient_to|二级进度结束渐变颜色|color|
 |zpb_show_second_point_shape|二级进度形状（point,line）|enum|
-
+|zpb_use_rect_mode|是否使用矩形进度模式|boolean|
 ### Fix Records
+
+#### v1.0.4
+
+- 添加矩形进度模式;
+- 添加`setOnProgressChangedListener`回调方法；
 
 #### v1.0.3
 

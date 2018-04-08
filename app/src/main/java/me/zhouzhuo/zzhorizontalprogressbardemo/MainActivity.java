@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     pb3.setProgressColor(0xffff0000);
                 }
-                tvProgress.setText("prgress = " + pb1.getProgress() + ", max = " + pb1.getMax());
             }
 
             @Override
@@ -48,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+        pb4.setOnProgressChangedListener(new ZzHorizontalProgressBar.OnProgressChangedListener() {
+            @Override
+            public void onProgressChanged(ZzHorizontalProgressBar progressBar, int max, int progress) {
+                tvProgress.setText("prgress = " + progress + ", max = " + max);
+            }
+
+            @Override
+            public void onSecondProgressChanged(ZzHorizontalProgressBar progressBar, int max, int progress) {
 
             }
         });

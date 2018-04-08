@@ -19,5 +19,6 @@
         <attr name="zpb_open_second_gradient" format="boolean" />
         <attr name="zpb_second_gradient_from" format="color|reference" />
         <attr name="zpb_second_gradient_to" format="color|reference" />
+        <attr name="zpb_use_rect_mode" format="boolean" />
     </declare-styleable>
 </resources>

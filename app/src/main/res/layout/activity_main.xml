@@ -62,6 +62,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        app:zpb_use_rect_mode="true"
+        app:zpb_padding="0dp"
         app:zpb_pb_color="@android:color/holo_green_dark" />
 
     <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
@@ -72,6 +74,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         app:zpb_bg_color="#dbdbdb"
+        app:zpb_use_rect_mode="true"
         app:zpb_gradient_from="#419120"
         app:zpb_gradient_to="#b3eb50"
         app:zpb_max="100"
@@ -82,7 +85,7 @@
         android:id="@+id/tv_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
@@ -90,7 +93,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:text="拖动试试?" />
 
     <SeekBar
