@@ -17,7 +17,7 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 Gradle:
 
 ```
-compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.3'
+compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.4'
 ```
 
 
@@ -35,7 +35,7 @@ Maven:
 
 <h3>What does it look like？</h3>
 
-![这里写图片描述](https://github.com/zhouzhuo810/ZzHorizontalProgressBar/blob/master/zzhorizontalprogressbar.gif)
+![这里写图片描述](https://github.com/zhouzhuo810/ZzHorizontalProgressBar/blob/master/zzhorizontalprogressbar1.gif)
 
 
 
