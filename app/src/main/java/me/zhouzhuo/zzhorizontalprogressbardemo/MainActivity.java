@@ -37,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
                 pb5.setProgress(progress);
                 if (progress > 80) {
                     pb3.setProgressColor(0xff00ff00);
+                    pb5.setGradientColorAndBorderColor(0x7ff5515f, 0x7f9f041b, 0xffff001f);
                 } else {
                     pb3.setProgressColor(0xffff0000);
+                    pb5.setGradientColorAndBorderColor(0x7fb4ec51, 0x7f429321, 0xff85ff00);
                 }
             }
 

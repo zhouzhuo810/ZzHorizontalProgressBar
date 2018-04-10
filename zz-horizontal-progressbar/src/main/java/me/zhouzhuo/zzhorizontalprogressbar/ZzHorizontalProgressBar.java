@@ -766,6 +766,37 @@ public class ZzHorizontalProgressBar extends View {
         invalidate();
     }
 
+    public void setBorderColor(int borderColor) {
+        this.borderColor = borderColor;
+        this.borderPaint.setColor(this.borderColor);
+        invalidate();
+    }
+
+    public void setGradientColor(int from, int to) {
+        this.gradientFrom = from;
+        this.gradientTo = to;
+        invalidate();
+    }
+
+    public void setSecondGradientColor(int from, int to) {
+        this.secondGradientFrom = from;
+        this.secondGradientTo = to;
+        invalidate();
+    }
+
+    public void setGradientColorAndBorderColor(int from, int to, int borderColor) {
+        this.gradientFrom = from;
+        this.gradientTo = to;
+        this.borderColor = borderColor;
+        this.borderPaint.setColor(this.borderColor);
+        invalidate();
+    }
+
+    public int getBorderColor() {
+        return borderColor;
+    }
+
+
     public void setOnProgressChangedListener(OnProgressChangedListener onProgressChangedListener) {
         this.onProgressChangedListener = onProgressChangedListener;
     }
