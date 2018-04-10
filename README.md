@@ -17,7 +17,7 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 Gradle:
 
 ```
-compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.4'
+compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.5'
 ```
 
 
@@ -27,7 +27,7 @@ Maven:
 <dependency>
   <groupId>me.zhouzhuo.zzhorizontalprogressbar</groupId>
   <artifactId>zz-horizontal-progressbar</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <type>pom</type>
 </dependency>
 ```
@@ -100,8 +100,22 @@ Maven:
 |zpb_second_gradient_from|二级进度开始渐变颜色|color|
 |zpb_second_gradient_to|二级进度结束渐变颜色|color|
 |zpb_show_second_point_shape|二级进度形状（point,line）|enum|
-|zpb_use_rect_mode|是否使用矩形进度模式|boolean|
+|zpb_show_mode|显示进度的模式(round,rect,round_rect)|enum|
+|zpb_round_rect_radius|round_rect模式下圆角的半径|dimension|
+|zpb_draw_border|是否画边框|boolean|
+|zpb_border_width|边框的线宽|dimension|
+|zpb_border_color|边框的颜色|color|
+
 ### Fix Records
+
+#### v1.0.5
+
+- 添加自定义圆角大小模式；
+- 添加zpb_show_mode属性，切换模式；
+- 添加zpb_round_rect_radius属性，圆角半径；
+- 添加zpb_draw_border属性，是否画边框；
+- 添加zpb_border_width属性，边框宽度；
+- 添加zpb_border_color属性，边框颜色；
 
 #### v1.0.4
 

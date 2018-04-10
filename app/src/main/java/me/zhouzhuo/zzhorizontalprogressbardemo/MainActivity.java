@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         final ZzHorizontalProgressBar pb2 = (ZzHorizontalProgressBar) findViewById(R.id.pb2);
         final ZzHorizontalProgressBar pb3 = (ZzHorizontalProgressBar) findViewById(R.id.pb3);
         final ZzHorizontalProgressBar pb4 = (ZzHorizontalProgressBar) findViewById(R.id.pb4);
+        final ZzHorizontalProgressBar pb5 = (ZzHorizontalProgressBar) findViewById(R.id.pb5);
 
         final TextView tvProgress = (TextView) findViewById(R.id.tv_progress);
 
@@ -28,11 +29,12 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 pb.setProgress(progress);
                 pb1.setProgress(progress);
-                pb1.setSecondProgress(progress);
+                pb1.setSecondProgress(progress-20);
                 pb2.setProgress(progress);
                 pb2.setSecondProgress(progress-30);
                 pb3.setProgress(progress);
                 pb4.setProgress(progress);
+                pb5.setProgress(progress);
                 if (progress > 80) {
                     pb3.setProgressColor(0xff00ff00);
                 } else {
