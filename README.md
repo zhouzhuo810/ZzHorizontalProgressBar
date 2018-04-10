@@ -35,7 +35,7 @@ Maven:
 
 <h3>What does it look like？</h3>
 
-![这里写图片描述](https://github.com/zhouzhuo810/ZzHorizontalProgressBar/blob/master/zzhorizontalprogressbar1.gif)
+![这里写图片描述](https://github.com/zhouzhuo810/ZzHorizontalProgressBar/blob/master/zzhorizontalprogressbar.gif)
 
 
 
