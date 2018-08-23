@@ -17,7 +17,7 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 Gradle:
 
 ```
-compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.6'
+compile 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.7'
 ```
 
 
@@ -107,6 +107,10 @@ Maven:
 |zpb_border_color|边框的颜色|color|
 
 ### Fix Records
+
+#### v1.0.7
+
+- 修复圆角进度算法缺陷；
 
 #### v1.0.6
 

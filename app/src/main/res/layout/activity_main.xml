@@ -100,6 +100,26 @@
         app:zpb_round_rect_radius="4dp"
         app:zpb_show_mode="round_rect" />
 
+
+    <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
+        android:id="@+id/pb6"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        app:zpb_bg_color="#0000"
+        app:zpb_border_color="#85ff00"
+        app:zpb_border_width="2dp"
+        app:zpb_draw_border="true"
+        app:zpb_gradient_from="#7ff5515f"
+        app:zpb_gradient_to="#7f9f041b"
+        app:zpb_max="100"
+        app:zpb_open_gradient="true"
+        app:zpb_padding="0px"
+        app:zpb_round_rect_radius="9dp"
+        app:zpb_show_mode="round_rect" />
+
     <TextView
         android:id="@+id/tv_progress"
         android:layout_width="match_parent"

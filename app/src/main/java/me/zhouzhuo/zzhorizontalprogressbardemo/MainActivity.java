@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         final ZzHorizontalProgressBar pb3 = (ZzHorizontalProgressBar) findViewById(R.id.pb3);
         final ZzHorizontalProgressBar pb4 = (ZzHorizontalProgressBar) findViewById(R.id.pb4);
         final ZzHorizontalProgressBar pb5 = (ZzHorizontalProgressBar) findViewById(R.id.pb5);
+        final ZzHorizontalProgressBar pb6 = (ZzHorizontalProgressBar) findViewById(R.id.pb6);
 
         final TextView tvProgress = (TextView) findViewById(R.id.tv_progress);
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 pb3.setProgress(progress);
                 pb4.setProgress(progress);
                 pb5.setProgress(progress);
+                pb6.setProgress(progress);
                 if (progress > 80) {
                     pb3.setProgressColor(0xff00ff00);
                     pb5.setGradientColorAndBorderColor(0x7ff5515f, 0x7f9f041b, 0xffff001f);

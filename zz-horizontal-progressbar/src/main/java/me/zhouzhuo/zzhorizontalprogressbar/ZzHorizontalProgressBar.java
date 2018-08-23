@@ -399,7 +399,7 @@ public class ZzHorizontalProgressBar extends View {
             progressHeight = progressHeight - 1;
         }
         if (openGradient) {
-            int progressWidth = width - padding * 2;
+            int progressWidth = width - padding * 2 - borderWidth;
             float mDx = progressWidth * percent;
 
             int colors[] = new int[2];
@@ -418,14 +418,14 @@ public class ZzHorizontalProgressBar extends View {
             //gradient
             gradientPaint.setShader(shader);
             //progress line
-            RectF rectF = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + mDx - borderWidth / 2, padding + progressHeight - borderWidth / 2);
+            RectF rectF = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + mDx + borderWidth / 2, padding + progressHeight - borderWidth / 2);
             canvas.drawRoundRect(rectF, radius, radius, gradientPaint);
 
         } else {
-            int progressWidth = width - padding * 2;
+            int progressWidth = width - padding * 2 - borderWidth;
             float dx = progressWidth * percent;
             progressPaint.setColor(progressColor);
-            RectF rectF = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + dx - borderWidth / 2, padding + progressHeight - borderWidth / 2);
+            RectF rectF = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + dx + borderWidth / 2, padding + progressHeight - borderWidth / 2);
             canvas.drawRoundRect(rectF, radius, radius, progressPaint);
         }
 
