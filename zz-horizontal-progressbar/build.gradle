@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.7"
+version = "1.0.8"
 
 android {
     resourcePrefix "zz_" //随意填写
@@ -13,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 8
-        versionName "1.7"
+        versionCode 9
+        versionName "1.8"
     }
     buildTypes {
         release {
@@ -109,9 +109,9 @@ bintray {
         issueTrackerUrl = 'https://github.com/zhouzhuo810/ZzHorizontalProgressBar/issues'
         publicDownloadNumbers = true
         version {
-            name = '1.0.7'
+            name = '1.0.8'
             desc = 'zz-horizontal-progressbar release'
-            vcsTag = '1.0.7'
+            vcsTag = '1.0.8'
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }
