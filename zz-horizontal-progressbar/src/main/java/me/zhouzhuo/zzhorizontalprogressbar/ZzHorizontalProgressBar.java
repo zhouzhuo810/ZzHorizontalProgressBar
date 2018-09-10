@@ -276,7 +276,7 @@ public class ZzHorizontalProgressBar extends View {
                 } else {
                     //line shape
                     int s_progressWidth = width - padding * 2 - s_progressHeight;
-                    float dx = s_progressWidth * percent;
+                    float dx = s_progressWidth * s_percent;
                     secondProgressPaint.setColor(secondProgressColor);
                     //left circle
                     canvas.drawCircle(padding + s_progressHeight / 2, padding + s_progressHeight / 2, s_progressHeight / 2, secondProgressPaint);
@@ -375,7 +375,7 @@ public class ZzHorizontalProgressBar extends View {
                 //no gradient
                 //line shape
                 int s_progressWidth = width - padding * 2;
-                float dx = s_progressWidth * percent;
+                float dx = s_progressWidth * s_percent;
                 secondProgressPaint.setColor(secondProgressColor);
                 RectF midRecf = new RectF(padding, padding, padding + dx, padding + s_progressHeight);
                 canvas.drawRect(midRecf, secondProgressPaint);
@@ -466,7 +466,7 @@ public class ZzHorizontalProgressBar extends View {
                 //no gradient
                 //line shape
                 int s_progressWidth = width - padding * 2;
-                float dx = s_progressWidth * percent;
+                float dx = s_progressWidth * s_percent;
                 secondProgressPaint.setColor(secondProgressColor);
                 RectF midRecf = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + dx - borderWidth / 2, padding + s_progressHeight - borderWidth / 2);
                 canvas.drawRoundRect(midRecf, radius, radius, secondProgressPaint);

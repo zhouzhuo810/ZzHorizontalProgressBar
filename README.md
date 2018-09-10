@@ -17,7 +17,7 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 Gradle:
 
 ```
-    implementation 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.8'
+    implementation 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.9'
 ```
 
 
@@ -96,9 +96,13 @@ Gradle:
 
 ### Fix Records
 
+#### v1.0.9
+
+- 修复二级进度条单一色时进度设置无效问题；
+
 #### v1.0.8
 
-- 修复二级进度条颜色设置无效问题；
+- 修复二级进度条单一色时颜色设置无效问题；
 
 #### v1.0.7
 
