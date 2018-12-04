@@ -17,7 +17,7 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 Gradle:
 
 ```
-    implementation 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.0.9'
+    implementation 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.1.0'
 ```
 
 
@@ -81,6 +81,7 @@ Gradle:
 |zpb_progress |默认进度值|int|
 |zpb_second_progress |二级进度默认进度值|int|
 |zpb_open_gradient|是否使用渐变色|boolean|
+|zpb_show_zero_point|进度为0时是否显示圆点|boolean|
 |zpb_gradient_from|开始渐变颜色|color|
 |zpb_gradient_to|结束渐变颜色|color|
 |zpb_show_second_progress|二级进度是否显示|boolean|
@@ -95,6 +96,10 @@ Gradle:
 |zpb_border_color|边框的颜色|color|
 
 ### Fix Records
+
+#### v1.1.0
+
+- zpb_show_zero_point属性，控制进度为0时是否显示圆点；
 
 #### v1.0.9
 

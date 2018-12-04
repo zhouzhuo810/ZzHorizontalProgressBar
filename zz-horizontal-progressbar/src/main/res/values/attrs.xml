@@ -7,6 +7,7 @@
         <attr name="zpb_second_pb_color" format="color|reference" />
         <attr name="zpb_max" format="integer" />
         <attr name="zpb_progress" format="integer" />
+        <attr name="zpb_show_zero_point" format="boolean" />
         <attr name="zpb_show_second_progress" format="boolean" />
         <attr name="zpb_second_progress" format="integer" />
         <attr name="zpb_show_second_point_shape" format="enum">
