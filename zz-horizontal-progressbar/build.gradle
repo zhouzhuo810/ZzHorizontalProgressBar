@@ -9,7 +9,7 @@ group='com.github.zhouzhuo810'
 android {
     resourcePrefix "zz_" //随意填写
 
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 14
