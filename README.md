@@ -17,7 +17,16 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 Gradle:
 
 ```
-    implementation 'com.github.zhouzhuo810:zz-horizontal-progressbar:1.1.1'
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+        }
+    }
+```
+
+```
+    implementation 'com.github.zhouzhuo810:ZzHorizontalProgressBar:1.1.1'
 ```
 
 
