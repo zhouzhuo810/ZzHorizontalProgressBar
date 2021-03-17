@@ -1,6 +1,6 @@
 # ZzHorizontalProgressBar
 
-A Horizontal ProgressBar that is customized easily.
+一个高度自定义的水平进度条控件.
 
 Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 
@@ -17,7 +17,7 @@ Github地址:https://github.com/zhouzhuo810/ZzHorizontalProgressBar
 Gradle:
 
 ```
-    implementation 'me.zhouzhuo.zzhorizontalprogressbar:zz-horizontal-progressbar:1.1.0'
+    implementation 'com.github.zhouzhuo810:zz-horizontal-progressbar:1.1.1'
 ```
 
 
@@ -58,7 +58,7 @@ Gradle:
 		//set padding
         pb.setPadding(0);		
 
-		//set bacground color
+		//set background color
         pb.setBgColor(Color.RED);
 
 		//set progress color
@@ -96,6 +96,11 @@ Gradle:
 |zpb_border_color|边框的颜色|color|
 
 ### Fix Records
+
+#### v1.1.1
+
+- 修复二级进度值为0时也显示一条线的问题；
+- 添加了文档注释；
 
 #### v1.1.0
 

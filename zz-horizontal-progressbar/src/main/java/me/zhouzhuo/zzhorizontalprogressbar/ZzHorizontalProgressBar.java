@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
@@ -13,8 +12,9 @@ import android.view.View;
 
 
 /**
- * A Horizontal ProgressBar that is customized easily.
- * Created by zz on 2016/9/22.
+ * 水平进度条
+ *
+ * Created by 周卓 on 2016/9/22.
  */
 public class ZzHorizontalProgressBar extends View {
     
@@ -46,7 +46,6 @@ public class ZzHorizontalProgressBar extends View {
     private int borderColor;
     private int borderWidth;
     
-    //    private boolean useRectMode = false;
     private int showMode = 0;
     private Paint borderPaint;
     
@@ -145,16 +144,16 @@ public class ZzHorizontalProgressBar extends View {
         super.onDraw(canvas);
         switch (showMode) {
             case 0:
-                //half cicle
-                drawBackground(canvas);
-                drawProgress(canvas);
-                drawBorder(canvas);
+                //half circle
+                drawBackgroundCircleMode(canvas);
+                drawProgressCircleMode(canvas);
+                drawBorderCircleMode(canvas);
                 break;
             case 1:
                 //rect
                 drawBackgroundRectMode(canvas);
                 drawProgressRectMode(canvas);
-                drawBorderRect(canvas);
+                drawBorderRectMode(canvas);
                 break;
             case 2:
                 //custom radius
@@ -165,26 +164,22 @@ public class ZzHorizontalProgressBar extends View {
         }
     }
     
-    private void drawProgress(Canvas canvas) {
+    /**
+     * 绘制半圆形进度
+     */
+    private void drawProgressCircleMode(Canvas canvas) {
         int width = getWidth();
-        if (width % 2 != 0) {
-            //Fix Me
-            width = width - 1;
-        }
         float percent = 0;
         if (max != 0) {
             percent = progress * 1.0f / max;
         }
         int progressHeight = getHeight() - padding * 2;
-        if (progressHeight % 2 != 0) {
-            progressHeight = progressHeight - 1;
-        }
         if (openGradient) {
             int progressWidth = width - padding * 2;
-            float mDx = progressWidth * percent;
+            float dx = progressWidth * percent;
             
-            int colors[] = new int[2];
-            float positions[] = new float[2];
+            int[] colors = new int[2];
+            float[] positions = new float[2];
             //from color
             colors[0] = gradientFrom;
             positions[0] = 0;
@@ -192,7 +187,7 @@ public class ZzHorizontalProgressBar extends View {
             colors[1] = gradientTo;
             positions[1] = 1;
             LinearGradient shader = new LinearGradient(
-                padding + progressHeight / 2, padding, padding + progressHeight / 2 + mDx, padding + progressHeight,
+                padding + progressHeight / 2.0f, padding, padding + progressHeight / 2.0f + dx, padding + progressHeight,
                 colors,
                 positions,
                 Shader.TileMode.MIRROR);
@@ -200,19 +195,19 @@ public class ZzHorizontalProgressBar extends View {
             gradientPaint.setShader(shader);
             
             int radius = width > getHeight() ? getHeight() / 2 : width / 2;
-            if (mDx < getHeight()) {
+            if (dx < getHeight()) {
                 //left circle
                 if (progress == 0) {
                     if (showZeroPoint) {
-                        canvas.drawCircle(padding + progressHeight / 2, padding + progressHeight / 2, progressHeight / 2, gradientPaint);
+                        canvas.drawCircle(padding + progressHeight / 2.0f, padding + progressHeight / 2.0f, progressHeight / 2.0f, gradientPaint);
                     }
                 } else {
-                    canvas.drawCircle(padding + progressHeight / 2, padding + progressHeight / 2, progressHeight / 2, gradientPaint);
+                    canvas.drawCircle(padding + progressHeight / 2.0f, padding + progressHeight / 2.0f, progressHeight / 2.0f, gradientPaint);
                 }
                 
             } else {
                 //progress line
-                RectF rectF = new RectF(padding, padding, padding + mDx, padding + progressHeight);
+                RectF rectF = new RectF(padding, padding, padding + dx, padding + progressHeight);
                 canvas.drawRoundRect(rectF, radius, radius, gradientPaint);
             }
             
@@ -220,70 +215,68 @@ public class ZzHorizontalProgressBar extends View {
             int progressWidth = width - padding * 2 - progressHeight;
             float dx = progressWidth * percent;
             progressPaint.setColor(progressColor);
+            float left = padding + progressHeight / 2.0f;
             //left circle
             if (progress == 0) {
                 if (showZeroPoint) {
-                    canvas.drawCircle(padding + progressHeight / 2, padding + progressHeight / 2, progressHeight / 2, progressPaint);
+                    canvas.drawCircle(left, left, progressHeight / 2.0f, progressPaint);
                 }
             } else {
-                canvas.drawCircle(padding + progressHeight / 2, padding + progressHeight / 2, progressHeight / 2, progressPaint);
+                canvas.drawCircle(left, left, progressHeight / 2.0f, progressPaint);
             }
             //right circle
             if (progress == 0) {
                 if (showZeroPoint) {
-                    canvas.drawCircle(padding + progressHeight / 2 + dx, padding + progressHeight / 2, progressHeight / 2, progressPaint);
+                    canvas.drawCircle(left + dx, left, progressHeight / 2.0f, progressPaint);
                 }
             } else {
-                canvas.drawCircle(padding + progressHeight / 2 + dx, padding + progressHeight / 2, progressHeight / 2, progressPaint);
+                canvas.drawCircle(left + dx, left, progressHeight / 2.0f, progressPaint);
             }
             //middle line
-            RectF midRecf = new RectF(padding + progressHeight / 2, padding, padding + progressHeight / 2 + dx, padding + progressHeight);
-            canvas.drawRect(midRecf, progressPaint);
+            RectF rectF = new RectF(left, padding, left + dx, padding + progressHeight);
+            canvas.drawRect(rectF, progressPaint);
         }
         
         //draw second progress
         if (showSecondProgress) {
-            float s_percent = 0;
+            float secondPercent = 0;
             if (max != 0) {
-                s_percent = secondProgress * 1.0f / max;
+                secondPercent = secondProgress * 1.0f / max;
             }
             int s_progressHeight = getHeight() - padding * 2;
-            if (s_progressHeight % 2 != 0) {
-                s_progressHeight = s_progressHeight - 1;
-            }
             if (openSecondGradient) {
-                int s_progressWidth = width - padding * 2;
-                float s_mDx = s_progressWidth * s_percent;
+                int secondProgressWidth = width - padding * 2;
+                float secondDx = secondProgressWidth * secondPercent;
                 
-                int s_colors[] = new int[2];
-                float s_positions[] = new float[2];
+                int[] secondColors = new int[2];
+                float[] secondPositions = new float[2];
                 //from color
-                s_colors[0] = secondGradientFrom;
-                s_positions[0] = 0;
+                secondColors[0] = secondGradientFrom;
+                secondPositions[0] = 0;
                 //to color
-                s_colors[1] = secondGradientTo;
-                s_positions[1] = 1;
+                secondColors[1] = secondGradientTo;
+                secondPositions[1] = 1;
                 LinearGradient s_shader = new LinearGradient(
-                    padding + s_progressHeight / 2, padding, padding + s_progressHeight / 2 + s_mDx, padding + s_progressHeight,
-                    s_colors,
-                    s_positions,
+                    padding + s_progressHeight / 2.0f, padding, padding + s_progressHeight / 2.0f + secondDx, padding + s_progressHeight,
+                    secondColors,
+                    secondPositions,
                     Shader.TileMode.MIRROR);
                 //gradient
                 secondGradientPaint.setShader(s_shader);
                 
                 int s_radius = width > getHeight() ? getHeight() / 2 : width / 2;
-                if (s_mDx < getHeight()) {
+                if (secondDx < getHeight()) {
                     //left circle
                     if (secondProgress == 0) {
                         if (showZeroPoint) {
-                            canvas.drawCircle(padding + s_progressHeight / 2, padding + s_progressHeight / 2, s_progressHeight / 2, secondGradientPaint);
+                            canvas.drawCircle(padding + s_progressHeight / 2.0f, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondGradientPaint);
                         }
                     } else {
-                        canvas.drawCircle(padding + s_progressHeight / 2, padding + s_progressHeight / 2, s_progressHeight / 2, secondGradientPaint);
+                        canvas.drawCircle(padding + s_progressHeight / 2.0f, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondGradientPaint);
                     }
                 } else {
                     //progress line
-                    RectF rectF = new RectF(padding, padding, padding + s_mDx, padding + s_progressHeight);
+                    RectF rectF = new RectF(padding, padding, padding + secondDx, padding + s_progressHeight);
                     canvas.drawRoundRect(rectF, s_radius, s_radius, secondGradientPaint);
                 }
             } else {
@@ -291,44 +284,44 @@ public class ZzHorizontalProgressBar extends View {
                 if (secondProgressShape == 0) {
                     //point shape
                     int s_progressWidth = width - padding * 2;
-                    float s_mDx = s_progressWidth * s_percent;
+                    float s_mDx = s_progressWidth * secondPercent;
                     //progress line
-                    float px = padding + s_progressHeight / 2 + s_mDx;
-                    if (px < width - padding - s_progressHeight / 2) {
-                        if (secondProgress ==0) {
+                    float px = padding + s_progressHeight / 2.0f + s_mDx;
+                    if (px < width - padding - s_progressHeight / 2.0f) {
+                        if (secondProgress == 0) {
                             if (showZeroPoint) {
-                                canvas.drawCircle(px, padding + s_progressHeight / 2, s_progressHeight / 2, secondProgressPaint);
+                                canvas.drawCircle(px, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondProgressPaint);
                             }
                         } else {
-                            canvas.drawCircle(px, padding + s_progressHeight / 2, s_progressHeight / 2, secondProgressPaint);
+                            canvas.drawCircle(px, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondProgressPaint);
                         }
                     } else {
-                        canvas.drawCircle(px - s_progressHeight, padding + s_progressHeight / 2, s_progressHeight / 2, secondProgressPaint);
+                        canvas.drawCircle(px - s_progressHeight, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondProgressPaint);
                     }
                     
                 } else {
                     //line shape
                     int s_progressWidth = width - padding * 2 - s_progressHeight;
-                    float dx = s_progressWidth * s_percent;
+                    float dx = s_progressWidth * secondPercent;
                     secondProgressPaint.setColor(secondProgressColor);
                     //left circle
                     if (secondProgress == 0) {
                         if (showZeroPoint) {
-                            canvas.drawCircle(padding + s_progressHeight / 2, padding + s_progressHeight / 2, s_progressHeight / 2, secondProgressPaint);
+                            canvas.drawCircle(padding + s_progressHeight / 2.0f, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondProgressPaint);
                         }
                     } else {
-                        canvas.drawCircle(padding + s_progressHeight / 2, padding + s_progressHeight / 2, s_progressHeight / 2, secondProgressPaint);
+                        canvas.drawCircle(padding + s_progressHeight / 2.0f, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondProgressPaint);
                     }
                     //right circle
                     if (secondProgress == 0) {
                         if (showZeroPoint) {
-                            canvas.drawCircle(padding + s_progressHeight / 2 + dx, padding + s_progressHeight / 2, s_progressHeight / 2, secondProgressPaint);
+                            canvas.drawCircle(padding + s_progressHeight / 2.0f + dx, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondProgressPaint);
                         }
                     } else {
-                        canvas.drawCircle(padding + s_progressHeight / 2 + dx, padding + s_progressHeight / 2, s_progressHeight / 2, secondProgressPaint);
+                        canvas.drawCircle(padding + s_progressHeight / 2.0f + dx, padding + s_progressHeight / 2.0f, s_progressHeight / 2.0f, secondProgressPaint);
                     }
                     //middle line
-                    RectF midRecf = new RectF(padding + s_progressHeight / 2, padding, padding + s_progressHeight / 2 + dx, padding + s_progressHeight);
+                    RectF midRecf = new RectF(padding + s_progressHeight / 2.0f, padding, padding + s_progressHeight / 2.0f + dx, padding + s_progressHeight);
                     canvas.drawRect(midRecf, secondProgressPaint);
                 }
             }
@@ -336,26 +329,22 @@ public class ZzHorizontalProgressBar extends View {
         
     }
     
+    /**
+     * 绘制方形进度
+     */
     private void drawProgressRectMode(Canvas canvas) {
         int width = getWidth();
-        if (width % 2 != 0) {
-            //Fix Me
-            width = width - 1;
-        }
         float percent = 0;
         if (max != 0) {
             percent = progress * 1.0f / max;
         }
         int progressHeight = getHeight() - padding * 2;
-        if (progressHeight % 2 != 0) {
-            progressHeight = progressHeight - 1;
-        }
         if (openGradient) {
             int progressWidth = width - padding * 2;
             float mDx = progressWidth * percent;
             
-            int colors[] = new int[2];
-            float positions[] = new float[2];
+            int[] colors = new int[2];
+            float[] positions = new float[2];
             //from color
             colors[0] = gradientFrom;
             positions[0] = 0;
@@ -363,14 +352,13 @@ public class ZzHorizontalProgressBar extends View {
             colors[1] = gradientTo;
             positions[1] = 1;
             LinearGradient shader = new LinearGradient(
-                padding + progressHeight / 2, padding, padding + progressHeight / 2 + mDx, padding + progressHeight,
+                padding + progressHeight / 2.0f, padding, padding + progressHeight / 2.0f + mDx, padding + progressHeight,
                 colors,
                 positions,
                 Shader.TileMode.MIRROR);
             //gradient
             gradientPaint.setShader(shader);
             
-            int radius = width > getHeight() ? getHeight() / 2 : width / 2;
             //progress line
             RectF rectF = new RectF(padding, padding, padding + mDx, padding + progressHeight);
             canvas.drawRect(rectF, gradientPaint);
@@ -379,8 +367,8 @@ public class ZzHorizontalProgressBar extends View {
             int progressWidth = width - padding * 2;
             float dx = progressWidth * percent;
             progressPaint.setColor(progressColor);
-            RectF midRecf = new RectF(padding, padding, padding + dx, padding + progressHeight);
-            canvas.drawRect(midRecf, progressPaint);
+            RectF rectF = new RectF(padding, padding, padding + dx, padding + progressHeight);
+            canvas.drawRect(rectF, progressPaint);
         }
         
         //draw second progress
@@ -390,15 +378,12 @@ public class ZzHorizontalProgressBar extends View {
                 s_percent = secondProgress * 1.0f / max;
             }
             int s_progressHeight = getHeight() - padding * 2;
-            if (s_progressHeight % 2 != 0) {
-                s_progressHeight = s_progressHeight - 1;
-            }
             if (openSecondGradient) {
                 int s_progressWidth = width - padding * 2;
                 float s_mDx = s_progressWidth * s_percent;
                 
-                int s_colors[] = new int[2];
-                float s_positions[] = new float[2];
+                int[] s_colors = new int[2];
+                float[] s_positions = new float[2];
                 //from color
                 s_colors[0] = secondGradientFrom;
                 s_positions[0] = 0;
@@ -406,7 +391,7 @@ public class ZzHorizontalProgressBar extends View {
                 s_colors[1] = secondGradientTo;
                 s_positions[1] = 1;
                 LinearGradient s_shader = new LinearGradient(
-                    padding + s_progressHeight / 2, padding, padding + s_progressHeight / 2 + s_mDx, padding + s_progressHeight,
+                    padding + s_progressHeight / 2.0f, padding, padding + s_progressHeight / 2.0f + s_mDx, padding + s_progressHeight,
                     s_colors,
                     s_positions,
                     Shader.TileMode.MIRROR);
@@ -422,225 +407,204 @@ public class ZzHorizontalProgressBar extends View {
                 int s_progressWidth = width - padding * 2;
                 float dx = s_progressWidth * s_percent;
                 secondProgressPaint.setColor(secondProgressColor);
-                RectF midRecf = new RectF(padding, padding, padding + dx, padding + s_progressHeight);
-                canvas.drawRect(midRecf, secondProgressPaint);
+                RectF rectF = new RectF(padding, padding, padding + dx, padding + s_progressHeight);
+                canvas.drawRect(rectF, secondProgressPaint);
             }
         }
         
     }
     
+    /**
+     * 绘制圆角矩形进度
+     */
     private void drawProgressRoundRectMode(Canvas canvas) {
         int width = getWidth();
-        if (width % 2 != 0) {
-            //Fix Me
-            width = width - 1;
-        }
         float percent = 0;
         if (max != 0) {
             percent = progress * 1.0f / max;
         }
         int progressHeight = getHeight() - padding * 2;
-        if (progressHeight % 2 != 0) {
-            progressHeight = progressHeight - 1;
-        }
+        int progressWidth = width - padding * 2 - borderWidth;
+        float dx = progressWidth * percent;
         if (openGradient) {
-            int progressWidth = width - padding * 2 - borderWidth;
-            float mDx = progressWidth * percent;
-            
-            int colors[] = new int[2];
-            float positions[] = new float[2];
+            int[] colors = new int[2];
+            float[] positions = new float[2];
             //from color
             colors[0] = gradientFrom;
             positions[0] = 0;
             //to color
             colors[1] = gradientTo;
             positions[1] = 1;
+            float left = padding + progressHeight / 2.0f;
             LinearGradient shader = new LinearGradient(
-                padding + progressHeight / 2, padding, padding + progressHeight / 2 + mDx, padding + progressHeight,
+                left, padding, left + dx, padding + progressHeight,
                 colors,
                 positions,
                 Shader.TileMode.MIRROR);
             //gradient
             gradientPaint.setShader(shader);
             //progress line
-            RectF rectF = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + mDx + borderWidth / 2, padding + progressHeight - borderWidth / 2);
+            float rectLeft = padding + borderWidth / 2.0f;
+            float rectTop = padding + borderWidth / 2.0f;
+            RectF rectF = new RectF(rectLeft, rectTop, rectLeft + dx, getHeight() - rectTop);
             canvas.drawRoundRect(rectF, radius, radius, gradientPaint);
-            
         } else {
-            int progressWidth = width - padding * 2 - borderWidth;
-            float dx = progressWidth * percent;
             progressPaint.setColor(progressColor);
-            RectF rectF = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + dx + borderWidth / 2, padding + progressHeight - borderWidth / 2);
+            float rectLeft = padding + borderWidth / 2.0f;
+            float rectTop = padding + borderWidth / 2.0f;
+            RectF rectF = new RectF(rectLeft, rectTop, rectLeft + dx, getHeight() - rectTop);
             canvas.drawRoundRect(rectF, radius, radius, progressPaint);
         }
         
         //draw second progress
         if (showSecondProgress) {
-            float s_percent = 0;
+            float secondPercent = 0;
             if (max != 0) {
-                s_percent = secondProgress * 1.0f / max;
+                secondPercent = secondProgress * 1.0f / max;
             }
-            int s_progressHeight = getHeight() - padding * 2;
-            if (s_progressHeight % 2 != 0) {
-                s_progressHeight = s_progressHeight - 1;
-            }
+            int secondProgressHeight = getHeight() - padding * 2;
+            int secondProgressWidth = width - padding * 2 - borderWidth;
+            float secondDx = secondProgressWidth * secondPercent;
             if (openSecondGradient) {
-                int s_progressWidth = width - padding * 2;
-                float s_mDx = s_progressWidth * s_percent;
-                
-                int s_colors[] = new int[2];
-                float s_positions[] = new float[2];
+                int[] secondColors = new int[2];
+                float[] secondPositions = new float[2];
                 //from color
-                s_colors[0] = secondGradientFrom;
-                s_positions[0] = 0;
+                secondColors[0] = secondGradientFrom;
+                secondPositions[0] = 0;
                 //to color
-                s_colors[1] = secondGradientTo;
-                s_positions[1] = 1;
+                secondColors[1] = secondGradientTo;
+                secondPositions[1] = 1;
+                float left = padding + secondProgressHeight / 2.0f;
                 LinearGradient s_shader = new LinearGradient(
-                    padding + s_progressHeight / 2 + borderWidth / 2, padding + borderWidth / 2, padding + s_progressHeight / 2 + s_mDx - borderWidth / 2, padding + s_progressHeight - borderWidth / 2,
-                    s_colors,
-                    s_positions,
+                    left, padding, left + secondDx, padding + secondProgressHeight,
+                    secondColors,
+                    secondPositions,
                     Shader.TileMode.MIRROR);
                 //gradient
                 secondGradientPaint.setShader(s_shader);
                 
                 //progress line
-                RectF rectF = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + s_mDx - borderWidth / 2, padding + s_progressHeight - borderWidth / 2);
+                float rectLeft = padding + borderWidth / 2.0f;
+                float rectTop = padding + borderWidth / 2.0f;
+                RectF rectF = new RectF(rectLeft, rectTop, rectLeft + secondDx, getHeight() - rectTop);
                 canvas.drawRoundRect(rectF, radius, radius, secondGradientPaint);
             } else {
                 //no gradient
                 //line shape
-                int s_progressWidth = width - padding * 2;
-                float dx = s_progressWidth * s_percent;
                 secondProgressPaint.setColor(secondProgressColor);
-                RectF midRecf = new RectF(padding + borderWidth / 2, padding + borderWidth / 2, padding + dx - borderWidth / 2, padding + s_progressHeight - borderWidth / 2);
-                canvas.drawRoundRect(midRecf, radius, radius, secondProgressPaint);
+                float rectLeft = padding + borderWidth / 2.0f;
+                float rectTop = padding + borderWidth / 2.0f;
+                RectF rectF = new RectF(rectLeft, rectTop, rectLeft + secondDx, getHeight() - rectTop);
+                canvas.drawRoundRect(rectF, radius, radius, secondProgressPaint);
             }
         }
         
     }
     
-    private void drawBackground(Canvas canvas) {
+    /**
+     * 绘制半圆形背景
+     */
+    private void drawBackgroundCircleMode(Canvas canvas) {
         int bgHeight = getHeight();
-        if (bgHeight % 2 != 0) {
-            bgHeight = bgHeight - 1;
-        }
         int width = getWidth();
-        if (width % 2 != 0) {
-            //Fix Me
-            width = width - 1;
-        }
-        
         //left circle
-        canvas.drawCircle(bgHeight / 2, bgHeight / 2, bgHeight / 2, bgPaint);
+        canvas.drawCircle(bgHeight / 2.0f, bgHeight / 2.0f, bgHeight / 2.0f, bgPaint);
         //right circle
-        canvas.drawCircle(width - bgHeight / 2, bgHeight / 2, bgHeight / 2, bgPaint);
+        canvas.drawCircle(width - bgHeight / 2.0f, bgHeight / 2.0f, bgHeight / 2.0f, bgPaint);
         //middle line
-        RectF midRecf = new RectF(bgHeight / 2, 0, width - bgHeight / 2, bgHeight);
-        canvas.drawRect(midRecf, bgPaint);
+        RectF rectF = new RectF(bgHeight / 2.0f, 0, width - bgHeight / 2.0f, bgHeight);
+        canvas.drawRect(rectF, bgPaint);
     }
     
-    private void drawBorder(Canvas canvas) {
+    /**
+     * 绘制半圆形边框
+     */
+    private void drawBorderCircleMode(Canvas canvas) {
         if (drawBorder) {
             int bgHeight = getHeight();
-            if (bgHeight % 2 != 0) {
-                bgHeight = bgHeight - 1;
-            }
             int width = getWidth();
-            if (width % 2 != 0) {
-                //Fix Me
-                width = width - 1;
-            }
             RectF rect = new RectF(0, 0, width, bgHeight);
-            canvas.drawRoundRect(rect, bgHeight / 2, bgHeight / 2, borderPaint);
+            canvas.drawRoundRect(rect, bgHeight / 2.0f, bgHeight / 2.0f, borderPaint);
         }
     }
     
-    private void drawBorderRect(Canvas canvas) {
+    /**
+     * 绘制半方形边框
+     */
+    private void drawBorderRectMode(Canvas canvas) {
         if (drawBorder) {
             int bgHeight = getHeight();
-            if (bgHeight % 2 != 0) {
-                bgHeight = bgHeight - 1;
-            }
             int width = getWidth();
-            if (width % 2 != 0) {
-                //Fix Me
-                width = width - 1;
-            }
             RectF rect = new RectF(0, 0, width, bgHeight);
             canvas.drawRect(rect, borderPaint);
         }
     }
     
+    /**
+     * 绘制圆角矩形边框
+     */
     private void drawBorderRoundRect(Canvas canvas) {
         if (drawBorder) {
             int bgHeight = getHeight();
-            if (bgHeight % 2 != 0) {
-                bgHeight = bgHeight - 1;
-            }
             int width = getWidth();
-            if (width % 2 != 0) {
-                //Fix Me
-                width = width - 1;
-            }
-            RectF rect = new RectF(borderWidth / 2, borderWidth / 2, width - borderWidth / 2, bgHeight - borderWidth / 2);
+            RectF rect = new RectF(borderWidth / 2.0f, borderWidth / 2.0f, width - borderWidth / 2.0f, bgHeight - borderWidth / 2.0f);
             canvas.drawRoundRect(rect, radius, radius, borderPaint);
         }
     }
     
+    /**
+     * 绘制方形背景
+     */
     private void drawBackgroundRectMode(Canvas canvas) {
         int bgHeight = getHeight();
-        if (bgHeight % 2 != 0) {
-            bgHeight = bgHeight - 1;
-        }
         int width = getWidth();
-        if (width % 2 != 0) {
-            //Fix Me
-            width = width - 1;
-        }
-        
-        RectF midRecf = new RectF(0, 0, width, bgHeight);
-        canvas.drawRect(midRecf, bgPaint);
+        RectF rectF = new RectF(0, 0, width, bgHeight);
+        canvas.drawRect(rectF, bgPaint);
     }
     
+    /**
+     * 绘制圆角矩形背景
+     */
     private void drawBackgroundRoundRectMode(Canvas canvas) {
         int bgHeight = getHeight();
-        if (bgHeight % 2 != 0) {
-            bgHeight = bgHeight - 1;
-        }
         int width = getWidth();
-        if (width % 2 != 0) {
-            //Fix Me
-            width = width - 1;
-        }
-        
-        RectF midRecf = new RectF(borderWidth / 2, borderWidth / 2, width - borderWidth / 2, bgHeight - borderWidth / 2);
-        canvas.drawRoundRect(midRecf, radius, radius, bgPaint);
+        RectF rectF = new RectF(borderWidth / 2.0f, borderWidth / 2.0f, width - borderWidth / 2.0f, bgHeight - borderWidth / 2.0f);
+        canvas.drawRoundRect(rectF, radius, radius, bgPaint);
     }
     
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-    
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-    }
-    
+    /**
+     * 获取最大值
+     *
+     * @return 最大值
+     */
     public int getMax() {
         return max;
     }
     
+    /**
+     * 设置最大值
+     *
+     * @param max 最大值
+     */
     public void setMax(int max) {
         this.max = max;
         invalidate();
     }
     
+    /**
+     * 获取一级进度值
+     *
+     * @return 进度值
+     */
     public int getProgress() {
         return progress;
     }
     
+    /**
+     * 设置一级进度值
+     *
+     * @param progress 进度值
+     */
     public void setProgress(int progress) {
         if (progress < 0) {
             this.progress = 0;
@@ -655,19 +619,39 @@ public class ZzHorizontalProgressBar extends View {
         }
     }
     
+    /**
+     * 是否显示二级进度条
+     *
+     * @return 是/否
+     */
     public boolean isShowSecondProgress() {
         return showSecondProgress;
     }
     
+    /**
+     * 设置是否显示二级进度条
+     *
+     * @param showSecondProgress 是/否
+     */
     public void setShowSecondProgress(boolean showSecondProgress) {
         this.showSecondProgress = showSecondProgress;
         invalidate();
     }
     
+    /**
+     * 获取二级进度条进度
+     *
+     * @return 进度值
+     */
     public int getSecondProgress() {
         return secondProgress;
     }
     
+    /**
+     * 设置二级进度条进度
+     *
+     * @param secondProgress 进度值
+     */
     public void setSecondProgress(int secondProgress) {
         if (secondProgress < 0) {
             this.secondProgress = 0;
@@ -682,29 +666,59 @@ public class ZzHorizontalProgressBar extends View {
         }
     }
     
+    /**
+     * 获取二级进度条形状
+     *
+     * @return 形状，0：点，1：线
+     */
     public int getSecondProgressShape() {
         return secondProgressShape;
     }
     
+    /**
+     * 设置二级进度条形状
+     *
+     * @param secondProgressShape 形状，0：点，1：线
+     */
     public void setSecondProgressShape(int secondProgressShape) {
         this.secondProgressShape = secondProgressShape;
         invalidate();
     }
     
+    /**
+     * 获取背景色
+     *
+     * @return 颜色值
+     */
     public int getBgColor() {
         return bgColor;
     }
     
+    /**
+     * 设置背景色
+     *
+     * @param bgColor 颜色值
+     */
     public void setBgColor(int bgColor) {
         this.bgColor = bgColor;
         bgPaint.setColor(bgColor);
         invalidate();
     }
     
+    /**
+     * 获取二级渐变是否启用
+     *
+     * @return 是/否
+     */
     public boolean isOpenSecondGradient() {
         return openSecondGradient;
     }
     
+    /**
+     * 设置二级渐变是否启用
+     *
+     * @param openSecondGradient 是/否
+     */
     public void setOpenSecondGradient(boolean openSecondGradient) {
         this.openSecondGradient = openSecondGradient;
         invalidate();
@@ -714,49 +728,74 @@ public class ZzHorizontalProgressBar extends View {
         return secondGradientFrom;
     }
     
-    public void setSecondGradientFrom(int secondGradientFrom) {
-        this.secondGradientFrom = secondGradientFrom;
-        invalidate();
-    }
-    
     public int getSecondGradientTo() {
         return secondGradientTo;
     }
     
-    public void setSecondGradientTo(int secondGradientTo) {
-        this.secondGradientTo = secondGradientTo;
-        invalidate();
-    }
-    
+    /**
+     * 获取二级进度条颜色
+     *
+     * @return 颜色值
+     */
     public int getSecondProgressColor() {
         return secondProgressColor;
     }
     
+    /**
+     * 设置二级进度条颜色
+     *
+     * @param secondProgressColor 颜色值
+     */
     public void setSecondProgressColor(int secondProgressColor) {
         this.secondProgressColor = secondProgressColor;
         secondProgressPaint.setColor(secondProgressColor);
         invalidate();
     }
     
+    /**
+     * 获取一级进度条颜色
+     *
+     * @return 颜色值
+     */
     public int getProgressColor() {
         return progressColor;
     }
     
+    /**
+     * 设置一级进度条颜色
+     *
+     * @param progressColor 颜色值
+     */
     public void setProgressColor(int progressColor) {
         this.progressColor = progressColor;
         progressPaint.setColor(progressColor);
         invalidate();
     }
     
+    /**
+     * 获取内边距
+     *
+     * @return 边距值
+     */
     public int getPadding() {
         return padding;
     }
     
+    /**
+     * 设置内边距
+     *
+     * @param padding 边距值
+     */
     public void setPadding(int padding) {
         this.padding = padding;
         invalidate();
     }
     
+    /**
+     * 设置显示模式
+     *
+     * @param showMode 显示模式，0：半圆，1：方形，2：圆角矩形
+     */
     public void setShowMode(ShowMode showMode) {
         switch (showMode) {
             case ROUND:
@@ -773,7 +812,7 @@ public class ZzHorizontalProgressBar extends View {
     }
     
     /**
-     * get the percentage value of progress and max.
+     * 获取进度百分比，int类型
      *
      * @return percentage value
      */
@@ -781,13 +820,35 @@ public class ZzHorizontalProgressBar extends View {
         if (max == 0) {
             return 0;
         }
-        return (int) (progress * 100.0 / max);
+        return (int) (progress * 100.0f / max + 0.5f);
     }
     
+    /**
+     * 获取进度百分比，float类型
+     *
+     * @return percentage value
+     */
+    public float getPercentageFloat() {
+        if (max == 0) {
+            return 0f;
+        }
+        return progress * 100.0f / max;
+    }
+    
+    /**
+     * 一级渐变色是否启用
+     *
+     * @return 是/否
+     */
     public boolean isOpenGradient() {
         return openGradient;
     }
     
+    /**
+     * 设置一级渐变色是否启用
+     *
+     * @param openGradient 是/否
+     */
     public void setOpenGradient(boolean openGradient) {
         this.openGradient = openGradient;
         invalidate();
@@ -797,38 +858,52 @@ public class ZzHorizontalProgressBar extends View {
         return gradientFrom;
     }
     
-    public void setGradientFrom(int gradientFrom) {
-        this.gradientFrom = gradientFrom;
-        invalidate();
-    }
-    
     public int getGradientTo() {
         return gradientTo;
     }
     
-    public void setGradientTo(int gradientTo) {
-        this.gradientTo = gradientTo;
-        invalidate();
-    }
-    
+    /**
+     * 设置边框颜色
+     *
+     * @param borderColor 颜色值
+     */
     public void setBorderColor(int borderColor) {
         this.borderColor = borderColor;
         this.borderPaint.setColor(this.borderColor);
         invalidate();
     }
     
+    /**
+     * 设置一级进度条的渐变色
+     *
+     * @param from 起始颜色
+     * @param to   结束颜色
+     */
     public void setGradientColor(int from, int to) {
         this.gradientFrom = from;
         this.gradientTo = to;
         invalidate();
     }
     
+    /**
+     * 设置二级进度条的渐变色
+     *
+     * @param from 起始颜色
+     * @param to   结束颜色
+     */
     public void setSecondGradientColor(int from, int to) {
         this.secondGradientFrom = from;
         this.secondGradientTo = to;
         invalidate();
     }
     
+    /**
+     * 设置一级进度条的渐变色和边框颜色
+     *
+     * @param from        起始颜色
+     * @param to          结束颜色
+     * @param borderColor 边框颜色
+     */
     public void setGradientColorAndBorderColor(int from, int to, int borderColor) {
         this.gradientFrom = from;
         this.gradientTo = to;
@@ -837,11 +912,20 @@ public class ZzHorizontalProgressBar extends View {
         invalidate();
     }
     
+    /**
+     * 获取边框颜色
+     *
+     * @return 颜色值
+     */
     public int getBorderColor() {
         return borderColor;
     }
     
-    
+    /**
+     * 设置进度变化监听（包括一级和二级进度）
+     *
+     * @param onProgressChangedListener 进度值变化回调
+     */
     public void setOnProgressChangedListener(OnProgressChangedListener onProgressChangedListener) {
         this.onProgressChangedListener = onProgressChangedListener;
     }
